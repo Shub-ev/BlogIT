@@ -20,13 +20,13 @@ const createPost = async (req, res) => {
             });
         }
 
-        const imageBuffer = Buffer.from(imgData, 'base64');
+        // const imageBuffer = Buffer.from(imgData, 'base64');
 
         const session = await mongoose.startSession();
         session.startTransaction();
 
         try {
-            const imageDoc = new BlogImageModel({ imageData: imageBuffer, contentType });
+            const imageDoc = new BlogImageModel({ imageData: imgData, contentType });
             const savedImage = await imageDoc.save({ session });
 
             const blog = new BlogModel({ 
@@ -63,7 +63,6 @@ const createPost = async (req, res) => {
 
 const getBlogs = async (req, res) => {
     try{
-        const { email } = req.body;
         const blogs = await BlogModel.find({});
 
         const finalBlogs = [];
@@ -71,18 +70,18 @@ const getBlogs = async (req, res) => {
         for(let blog of blogs){
             const imageData = await BlogImageModel.findOne({ _id: blog.image });
             const author = await UserModel.findOne({ username: blog.user });
-            // console.log(imageData.imageData);
+            const { username, avatar } = author;
+            const {liked_users, likes, title, _id} = blog.toObject()
+
             const base64Image = imageData.imageData.toString('base64');
-            // console.log(blog);
 
             finalBlogs.push({
-                ...blog.toObject(),
+                ...{liked_users, likes, title, _id},
                 base64Image,
-                author,
+                username,
+                avatar,
             })
         }
-
-        // console.log(blogs);
 
         res.status(200).json({
             success: true,

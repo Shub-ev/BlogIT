@@ -1,29 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IoIosBookmark, IoIosHeart } from "react-icons/io";
 
 const BlogPage = () => {
-  // const { blogs, likeBlog, handleSaveBlog } = useAuth();
-  // const { blogKey } = useParams();
+  const [blog, setBlog] = useState({});
+  
 
   useEffect(() => {
-    const selectedBlog = blogs.find((blog) => blog.key === blogKey);
-    window.scrollTo(0, 0);
-  }, [blogs, blogKey]);
+    const fetchBlog = async () => {
 
-  const addLike = async (blogKey) => {
-    await likeBlog(blogKey);
-  };
-
-  if (!blogs || blogs.length === 0) {
-    return <p>Loading...</p>;
-  }
-
-  const selectedBlog = blogs.find((blog) => blog.key === blogKey);
-
-  if (!selectedBlog) {
-    return <p>Blog not found</p>;
-  }
+    }
+  }, []);
 
   return (
     <div className="BlogDetail mt-5 mb-16 md:ml-[80px] md:w-[900px]">

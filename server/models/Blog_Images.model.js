@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const BlogImageSchema = mongoose.Schema({
     imageData: {
-        type: Buffer,
+        type: String,
         required: [true, "Image data is required!"],
     },
     contentType: {

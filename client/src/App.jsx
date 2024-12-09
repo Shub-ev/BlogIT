@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { Signin, Signup } from "./_auth";
 import { Toaster } from "react-hot-toast";
-import { Home, Search, Post } from './_root/pages/';
+import { Home, Search, Post, BlogPage } from './_root/pages/';
 import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./_root/RootLayout";
 
@@ -38,7 +38,7 @@ const App = () => {
               <Route path="/post" element={<Post />} />
               <Route path="/search" element={<Search />} />
               {/* <Route path="/user" element={<User />} /> */}
-              {/* <Route path="/post/:blogKey" element={<BlogPage />} /> */}
+              <Route path="/post/:blogKey" element={<BlogPage />} />
              
             </Route>
           </Route>

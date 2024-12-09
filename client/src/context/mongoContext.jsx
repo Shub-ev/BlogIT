@@ -153,8 +153,6 @@ export const ContextProvider = ({ children }) => {
                 body: JSON.stringify(likeData),
             });
 
-            console.log(response);
-
             const data = await response.json();
             console.log(data);
             if (data.success) {
@@ -170,8 +168,18 @@ export const ContextProvider = ({ children }) => {
         }
     }
 
+    const fetchBlog = async () => {
+        try{
+            
+        }
+        catch (error) {
+            console.log('Error fetching blogs!' + error);
+            return error.message;
+        }
+    }
+
     return (
-        <MongoContext.Provider value={{ createUser, loginUser, getBlogs, createBlog, addLike, removeLike, user }}>
+        <MongoContext.Provider value={{ createUser, loginUser, getBlogs, createBlog, addLike, removeLike, fetchBlog, user }}>
             {children}
         </MongoContext.Provider>
     );
